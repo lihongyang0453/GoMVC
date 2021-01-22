@@ -9,8 +9,8 @@ func init() {
 
     beego.GlobalControllerRouter["GoMVC/controllers:LoginController"] = append(beego.GlobalControllerRouter["GoMVC/controllers:LoginController"],
         beego.ControllerComments{
-            Method: "AllBlock",
-            Router: "/all/:key",
+            Method: "StaticBlock",
+            Router: "/staticblock/:key",
             AllowHTTPMethods: []string{"get"},
             MethodParams: param.Make(),
             Filters: nil,
