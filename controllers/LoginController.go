@@ -1,34 +1,28 @@
 package controllers
 
+import (
+	OrmModel "GoMVC/models/OrmModel"
+	"fmt"
+
+	"github.com/astaxie/beego/orm"
+)
+
 type LoginController struct {
 	BaseController
 }
 
+//用户如果没有进行注册，那么就会通过反射来执行对应的函数，如果注册了就会通过interface来进行执行函数，性能上面会提升很多。
 // func (c *LoginController) URLMapping() {
-// 	c.Mapping("StaticBlock", c.StaticBlock)
+// 	c.Mapping("Login", c.Login)
 // }
 
-// @router /staticblock/:key [get]
-func (this *LoginController) StaticBlock() {
-	// orm.Debug = true
-	// // 自动建表
-	// orm.RunSyncdb("default", false, true)
-	// o := orm.NewOrm()
-	// o.Using("default")
-	// perfile := new(dbmodel.Profile)
-	// perfile.Age = 30
+func (this *LoginController) Index() {
+	this.TplName = "Index.tpl"
+}
 
-	// user := new(dbmodel.User)
-	// user.Name = "tom"
-	// user.Profile = perfile
-	// o.Insert(perfile)
-	// o.Insert(user)
-
-	// user.Name = "hezhixiong"
-	// num, err := o.Update(user)
-	// fmt.Printf("NUM: %d, ERR: %v\n", num, err)
-
-	// o.Delete(&dbmodel.User{Id: 2})
+// @router /Login/:key [get]
+func (this *LoginController) Login() {
+	
 
 	//this.ServeJSON()
 }
