@@ -13,8 +13,7 @@ type MainController struct {
 func (c *MainController) Get() {
 	c.Data["Website"] = "beego.me"
 	c.Data["Email"] = "astaxie@gmail.com"
-	logHelper.LogInfo("success")
-	logHelper.LogError("error")
-	logHelper.LogWarning("warning")
+
+	logHelper.LogEmail("send email to me !")
 	c.TplName = "index.tpl"
 }

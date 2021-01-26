@@ -8,17 +8,17 @@ import (
 )
 
 func LogError(msg string) {
-	logs.Error(msg)
+	logs.Error(msg + "\n")
 }
 func LogInfo(msg string) {
-	logs.Info(msg)
+	logs.Info(msg + "\n")
 }
 
 func LogWarning(msg string) {
-	logs.Warning(msg)
+	logs.Warning(msg + "\n")
 }
 func LogDebug(msg string) {
-	logs.Debug(msg)
+	logs.Debug(msg + "\n")
 }
 
 func init() {
@@ -43,8 +43,60 @@ func init() {
 		return
 	}
 	logs.SetLogger(logs.AdapterFile, string(configStr))
+
+	// config_smtp := make(map[string]interface{})
+	// config_smtp["username"] = "lihongyang0453@126.com"
+	// config_smtp["password"] = "li8978591"
+	// config_smtp["host"] = "smtp.126.com:25"
+	// config_smtp["fromAddress"] = "lihongyang0453@126.com"
+	// config_smtp["sendTos"] = []string{"lihy@crealifemed.com"}
+	// configSmtp, errsmtp := json.Marshal(config_smtp)
+	// if errsmtp != nil {
+	// 	return
+	// }
+	//str := `{"username":"lihongyang0453@126.com","password":"li8978591","host":"smtp.126.com:25","fromAddress":"lihongyang0453@126.com","sendTos":["lihy@crealifemed.com"]}`
+	//logs.SetLogger(logs.AdapterMail, string(configSmtp))
 	logs.SetLogFuncCall(true)
 	logs.EnableFuncCallDepth(true) //输出调用的文件名和文件行号
 	return
 
+}
+
+//发送电子邮件
+func LogEmail(data string) {
+	log := logs.NewLogger()
+	config_smtp := make(map[string]interface{})
+	config_smtp["username"] = "lihongyang0453@126.com"
+	config_smtp["password"] = "li8978591"
+	config_smtp["host"] = "smtp.126.com:25"
+	config_smtp["fromAddress"] = "lihongyang0453@126.com"
+	config_smtp["sendTos"] = []string{"lihy@crealifemed.com"}
+	configSmtp, errsmtp := json.Marshal(config_smtp)
+	if errsmtp != nil {
+		return
+	}
+	//str := `{"username":"lihongyang0453@126.com","password":"li8978591","host":"smtp.126.com:25","fromAddress":"lihongyang0453@126.com","sendTos":["lihy@crealifemed.com"]}`
+	log.SetLogger(logs.AdapterMail, string(configSmtp))
+	//log.SetLogFuncCall(true)
+	log.EnableFuncCallDepth(false) //输出调用的文件名和文件行号
+	log.Info(data)
+}
+
+///给传入的地址发送邮件
+func LogEmailWithAddress(data string, receiver []string) {
+	log := logs.NewLogger()
+	config_smtp := make(map[string]interface{})
+	config_smtp["username"] = "lihongyang0453@126.com"
+	config_smtp["password"] = "li8978591"
+	config_smtp["host"] = "smtp.126.com:25"
+	config_smtp["fromAddress"] = "lihongyang0453@126.com"
+	config_smtp["sendTos"] = receiver
+	configSmtp, errsmtp := json.Marshal(config_smtp)
+	if errsmtp != nil {
+		return
+	}
+	//str := `{"username":"lihongyang0453@126.com","password":"li8978591","host":"smtp.126.com:25","fromAddress":"lihongyang0453@126.com","sendTos":["lihy@crealifemed.com"]}`
+	log.SetLogger(logs.AdapterMail, string(configSmtp))
+	log.EnableFuncCallDepth(false) //输出调用的文件名和文件行号
+	log.Info(data)
 }
