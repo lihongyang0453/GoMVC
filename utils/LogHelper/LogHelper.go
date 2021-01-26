@@ -43,19 +43,6 @@ func init() {
 		return
 	}
 	logs.SetLogger(logs.AdapterFile, string(configStr))
-
-	// config_smtp := make(map[string]interface{})
-	// config_smtp["username"] = "lihongyang0453@126.com"
-	// config_smtp["password"] = "li8978591"
-	// config_smtp["host"] = "smtp.126.com:25"
-	// config_smtp["fromAddress"] = "lihongyang0453@126.com"
-	// config_smtp["sendTos"] = []string{"lihy@crealifemed.com"}
-	// configSmtp, errsmtp := json.Marshal(config_smtp)
-	// if errsmtp != nil {
-	// 	return
-	// }
-	//str := `{"username":"lihongyang0453@126.com","password":"li8978591","host":"smtp.126.com:25","fromAddress":"lihongyang0453@126.com","sendTos":["lihy@crealifemed.com"]}`
-	//logs.SetLogger(logs.AdapterMail, string(configSmtp))
 	logs.SetLogFuncCall(true)
 	logs.EnableFuncCallDepth(true) //输出调用的文件名和文件行号
 	return
@@ -64,13 +51,17 @@ func init() {
 
 //发送电子邮件
 func LogEmail(data string) {
+	conf, err1 := logconf.NewConfig("ini", "conf/app.conf")
+	if err1 != nil {
+		return
+	}
 	log := logs.NewLogger()
 	config_smtp := make(map[string]interface{})
-	config_smtp["username"] = "lihongyang0453@126.com"
-	config_smtp["password"] = "li8978591"
-	config_smtp["host"] = "smtp.126.com:25"
-	config_smtp["fromAddress"] = "lihongyang0453@126.com"
-	config_smtp["sendTos"] = []string{"lihy@crealifemed.com"}
+	config_smtp["username"] = conf.String("smtp_username")
+	config_smtp["password"] = conf.String("smtp_password")
+	config_smtp["host"] = conf.String("smtp_host")
+	config_smtp["fromAddress"] = conf.String("smtp_fromAddress")
+	config_smtp["sendTos"] = []string{conf.String("smtp_sendTos")}
 	configSmtp, errsmtp := json.Marshal(config_smtp)
 	if errsmtp != nil {
 		return
@@ -84,12 +75,19 @@ func LogEmail(data string) {
 
 ///给传入的地址发送邮件
 func LogEmailWithAddress(data string, receiver []string) {
+	conf, err1 := logconf.NewConfig("ini", "conf/app.conf")
+	if err1 != nil {
+		return
+	}
+	if len(receiver) <= 0 { //没传给个默认接受人
+		receiver = []string{conf.String("smtp_sendTos")}
+	}
 	log := logs.NewLogger()
 	config_smtp := make(map[string]interface{})
-	config_smtp["username"] = "lihongyang0453@126.com"
-	config_smtp["password"] = "li8978591"
-	config_smtp["host"] = "smtp.126.com:25"
-	config_smtp["fromAddress"] = "lihongyang0453@126.com"
+	config_smtp["username"] = conf.String("smtp_username")
+	config_smtp["password"] = conf.String("smtp_password")
+	config_smtp["host"] = conf.String("smtp_host")
+	config_smtp["fromAddress"] = conf.String("smtp_fromAddress")
 	config_smtp["sendTos"] = receiver
 	configSmtp, errsmtp := json.Marshal(config_smtp)
 	if errsmtp != nil {
