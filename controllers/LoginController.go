@@ -1,9 +1,6 @@
 package controllers
 
 import (
-	OrmModel "GoMVC/models/OrmModel"
-	"time"
-
 	beego "github.com/beego/beego/v2/server/web"
 )
 
@@ -20,21 +17,11 @@ func (c *LoginController) URLMapping() {
 
 // @router /Index/:key [get]
 func (this *LoginController) Index() {
-	user := new(OrmModel.User)
-	var totalCount int
-	user.GetList(1, 10, nil, "", &totalCount)
+
 	this.TplName = "Index.tpl"
 }
 
 // @router /Login/:key [post]
 func (this *LoginController) Login() {
-	user := new(OrmModel.User)
-	user.CreatedTime = time.Now()
-
-	var totalCount int
-	list := user.GetList(1, 10, nil, "", &totalCount)
-	if len(list) > 0 {
-
-	}
 	//this.ServeJSON()
 }

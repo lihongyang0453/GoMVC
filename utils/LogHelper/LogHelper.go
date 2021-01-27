@@ -10,6 +10,9 @@ import (
 func LogError(msg string) {
 	logs.Error(msg + "\n")
 }
+func LogError_e(msg error) {
+	logs.Error(msg.Error() + "\n")
+}
 func LogInfo(msg string) {
 	logs.Info(msg + "\n")
 }
