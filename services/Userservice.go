@@ -81,16 +81,18 @@ func (b *UserService) QueryAll() orm.QuerySeter {
 	return orm.NewOrm().QueryTable(b.User)
 }
 
-// func (b *User) QueryListPaged(pageIndex int, pageSize int, filter map[string]interface{}, orderBy string, totalCount *int) orm.QuerySeter {
-// 	user := new([]User)
-// 	totalCount = orm.NewOrm().QueryTable(b).Filter(filter).Count()
+func (b *UserService) QueryListPaged(pageIndex int, pageSize int, filter map[string]interface{}, orderBy string, totalCount *int) []ormModel.User {
+	var user []ormModel.User
 
-// 	if len(orderBy) == 0 {
-// 		return orm.NewOrm().QueryTable(b).Filter(filter).Limit(pageSize, (pageIndex-1)*pageSize).All(user)
-// 	} else {
-// 		return orm.NewOrm().QueryTable(b).Filter(filter).OrderBy(orderBy).Limit(pageSize, (pageIndex-1)*pageSize).All(user)
-// 	}
-// }
+	sql := "select * from t_userInfo where 1=1 "
+
+	o := orm.NewOrm()
+	num, err := o.Raw(sql, 0).QueryRows(&user)
+	if err != nil {
+		logHelper.LogError(strconv.FormatInt(num, 10))
+	}
+	return user
+}
 
 func (b *UserService) GetList(pageIndex int, pageSize int, filter map[string]interface{}, orderBy string, totalCount *int) []ormModel.User {
 	var user []ormModel.User
