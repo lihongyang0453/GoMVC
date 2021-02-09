@@ -78,7 +78,7 @@ func (b *UserService) Update(model ormModel.User) bool {
 
 //返回DataTable
 func (b *UserService) QueryAll() orm.QuerySeter {
-	return orm.NewOrm().QueryTable(b.User)
+	return orm.NewOrm().QueryTable(b.User).Filter("ID", 10)
 }
 
 func (b *UserService) QueryListPaged(pageIndex int, pageSize int, filter map[string]interface{}, orderBy string, totalCount *int) []ormModel.User {

@@ -1,4 +1,6 @@
 package services
 
-type BaseService struct {
+type BaseService interface {
+	Delete()
+	DeleteById()
 }

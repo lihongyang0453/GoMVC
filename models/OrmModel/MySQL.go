@@ -8,15 +8,6 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-// const (
-// 	username   = "root"
-// 	password   = "!Aa123123"
-// 	ip         = "localhost"
-// 	port       = "3306"
-// 	dbName     = "MemberMSDB"
-// 	driverName = "mysql"
-// )
-
 func init() {
 	conf, err1 := appconf.NewConfig("ini", "conf/db.conf")
 	if err1 != nil {
