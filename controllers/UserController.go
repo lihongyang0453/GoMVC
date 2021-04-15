@@ -9,6 +9,7 @@ func (c *UserController) Get() {
 	c.Data["Email"] = "astaxie@gmail.com"
 
 	//c.TplName = "index.tpl"
+	c.Render()
 }
 
 func (this *UserController) Get2() {

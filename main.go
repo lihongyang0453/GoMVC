@@ -14,7 +14,7 @@ import (
 func main() {
 	//注册过滤器
 	//beego.ErrorHandler("404",$filter.page_not_found)
-	//beego.InsertFilter("*", beego.BeforeRouter, $filter.FilterUser)
+	//beego.InsertFilter("*", beego.BeforeRouter, filter.FilterUser)
 	// 跨域处理
 	// beego.InsertFilter("*", beego.BeforeRouter, cors.Allow(&cors.Options{
 	// 	AllowAllOrigins:  true,
@@ -23,6 +23,9 @@ func main() {
 	// 	ExposeHeaders:    []string{"Content-Length", "Access-Control-Allow-Origin", "Access-Control-Allow-Headers", "Content-Type"},
 	// 	AllowCredentials: true,
 	// }))
+
+	//beego.SetStaticPath("/static", "static")//注册了 static 目录为静态处理的目录
+	beego.BConfig.RunMode = "dev"
 	beego.Run()
 
 }

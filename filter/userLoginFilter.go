@@ -8,7 +8,8 @@ package filter
 // 	beego "github.com/beego/beego/v2/server/web"
 // )
 
-// func FilterUser(ctx *context.Context) {
+// var FilterUser = func(ctx *context.Context) {
+// 	url:=ctx.Request.RequestURI
 // 	_, ok := ctx.Input.Session("uid").(int)
 // 	if !ok {
 // 		ctx.Redirect("/login", 302)

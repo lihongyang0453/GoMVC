@@ -16,5 +16,5 @@ func init() {
 	beego.AutoRouter(&controllers.UserController{})
 
 	//3、注解路由,然后在具体的controller 中的 method 方法上面写上 router 注释（// @router）就可以了
-	beego.Include(&controllers.LoginController{})
+	beego.AutoRouter(&controllers.LoginController{})
 }

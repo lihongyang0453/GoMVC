@@ -84,10 +84,10 @@ func (b *UserService) QueryAll() orm.QuerySeter {
 func (b *UserService) QueryListPaged(pageIndex int, pageSize int, filter map[string]interface{}, orderBy string, totalCount *int) []ormModel.User {
 	var user []ormModel.User
 
-	sql := "select * from t_userInfo where 1=1 "
+	sql := "select * from t_userInfo where 1=? "
 
 	o := orm.NewOrm()
-	num, err := o.Raw(sql, 0).QueryRows(&user)
+	num, err := o.Raw(sql, 1).QueryRows(&user)
 	if err != nil {
 		logHelper.LogError(strconv.FormatInt(num, 10))
 	}
