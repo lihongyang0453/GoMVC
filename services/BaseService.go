@@ -1,6 +1,7 @@
 package services
 
 type BaseService interface {
-	Delete()
-	DeleteById()
+	Delete(a interface{}) bool
+	DeleteById(ID int) bool
+	GetModelById(ID int) interface{}
 }

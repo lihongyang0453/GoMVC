@@ -5,10 +5,10 @@ type UserController struct {
 }
 
 func (c *UserController) Get() {
-	c.Data["Website"] = "beego.me"
+	c.Data["Website"] = "bbbbbbbbbbbbbeego.me"
 	c.Data["Email"] = "astaxie@gmail.com"
 
-	//c.TplName = "index.tpl"
+	c.TplName = "index.tpl"
 	c.Render()
 }
 
