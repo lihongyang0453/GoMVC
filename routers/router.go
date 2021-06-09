@@ -14,7 +14,7 @@ func init() {
 	//2、自动匹配，把需要路由的控制器注册到自动路由，除了前缀两个 /:controller/:method 的匹配之外，
 	//剩下的 url beego 会帮你自动化解析为参数，保存在 this.Ctx.Input.Params 当中
 	beego.AutoRouter(&controllers.UserController{})
-
+	beego.AutoRouter(&controllers.FileController{})
 	//3、注解路由,然后在具体的controller 中的 method 方法上面写上 router 注释（// @router）就可以了
 	beego.AutoRouter(&controllers.LoginController{})
 }

@@ -22,5 +22,14 @@
                 </div>
             </div>
         </header>
+
+        <br />
+        <div>
+        上传文件
+            <form enctype="multipart/form-data" method="POST" action="/File/UploadFile" >
+                <input type="file" name="uploadname" />
+                <input type="submit">
+            </form>
+        </div>
     </body>
 </html>
