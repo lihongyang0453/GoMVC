@@ -4,13 +4,9 @@ import (
 	_ "GoMVC/models/OrmModel"
 	_ "GoMVC/routers"
 
-	_ "GoMVC/utils/LogHelper"
-
-	//"github.com/astaxie/beego"
-
+	"github.com/astaxie/beego"
 	//"GoMVC/filter"
-
-	beego "github.com/beego/beego/v2/server/web"
+	//beego "github.com/beego/beego/v2/server/web"
 )
 
 func main() {
