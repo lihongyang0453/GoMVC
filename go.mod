@@ -10,4 +10,5 @@ require (
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/smartystreets/goconvey v1.6.4
+	golang.org/x/tools/gopls v0.6.11 // indirect
 )
