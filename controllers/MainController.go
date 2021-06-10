@@ -4,11 +4,11 @@ import (
 	service "GoMVC/services"
 	logHelper "GoMVC/utils/LogHelper"
 
-	beego "github.com/beego/beego/v2/server/web"
+	//beego "github.com/beego/beego/v2/server/web"
 )
 
 type MainController struct {
-	beego.Controller
+	BaseController
 }
 
 func (c *MainController) Get() {

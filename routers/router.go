@@ -13,10 +13,10 @@ func init() {
 	beego.Router("/Get", &controllers.MainController{})
 
 	//1.1、正则路由
-	beego.Router("/role/getByID/?:id", &controllers.RoleController{})  //例如对于URL"/api/123"可以匹配成功，此时变量":id"值为"123",? 代表可为空
-	beego.Router("/role/getByID/:id([0-9]+)", &controllers.RoleController{}) //匹配正整数
-	beego.Router("/role/getByName/:username([\\w]+)", &controllers.RoleController{}) //匹配字符串
-	beego.Router("/role/SaveModel/", &controllers.RoleController{}) //
+	// beego.Router("/role/getByID/?:id", &controllers.RoleController{})  //例如对于URL"/api/123"可以匹配成功，此时变量":id"值为"123",? 代表可为空
+	// beego.Router("/role/getByID/:id([0-9]+)", &controllers.RoleController{}) //匹配正整数
+	// beego.Router("/role/getByName/:username([\\w]+)", &controllers.RoleController{}) //匹配字符串
+	// beego.Router("/role/SaveModel/", &controllers.RoleController{}) //
 	//1.2、自定义路由、
 	// beego.Router("/role/getByID", &controllers.RoleController{},"*:getByID")  
 	// beego.Router("/role/getByID", &controllers.RoleController{},"get:getByID") 
@@ -31,7 +31,7 @@ func init() {
 	beego.AutoRouter(&controllers.UserController{})
 
 	//3、注解路由,然后在具体的controller 中的 method 方法上面写上 router 注释（// @router）就可以了
-	beego.Include(&LoginController{})
+	beego.Include(&controllers.LoginController{})
 
 	
 

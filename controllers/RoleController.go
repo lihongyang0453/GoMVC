@@ -1,8 +1,7 @@
 package controllers
 
 import(
-
-	"GoMVC/model"
+	model "GoMVC/models/BaseModel"
 )
 
 type RoleController struct{
@@ -15,8 +14,10 @@ func (r *RoleController)getByID(id int32) string{
 func (r *RoleController)getByName(username string) string{
 	return ""
 }
-func (r *RoleController)SaveModel(data interface{}) model.BaseResponse  {
-	result:=make(model.BaseResponse)
+func (r *RoleController)SaveModel(data interface{}) *model.BaseResponse  {
+ 	var result *model.BaseResponse = new(model.BaseResponse)
 
+	result.ErrCode=1
+	result.Msg="error"
 	return result
 }
